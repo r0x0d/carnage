@@ -1,7 +1,2 @@
-[package]
-name = "carnage"
-version = "0.1.0"
-edition = "2021"
-
 [workspace]
-members = ["crates/front", "crates/server"]
+members = ["crates/client", "crates/server"]
