@@ -1,4 +1,4 @@
-FROM python:3.12-slim as base
+FROM python:3.13-slim as base
 
 # Skip all interaction with apt
 ENV DEBIAN_FRONTEND="noninteractive" \
