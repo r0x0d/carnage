@@ -20,7 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module that implements the Account Route."""
-from fastapi import HTTPException, Request
+
+from sanic import Request, SanicException
+from sanic_ext import validate
 
 from carnage.api.routes.base import BaseRoute
 from carnage.api.schemas.account import ListAccountSchema, UpdateAccountSchema
@@ -30,25 +32,18 @@ from carnage.database.repository.account import AccountRepository
 class AccountRoute(BaseRoute):
     """Class that overrides the base routes for an API request."""
 
-    list_schema = ListAccountSchema
-    update_schema = UpdateAccountSchema
+    name: str = "account"
 
     def __init__(
         self,
-        name: str = "account",
-        tags: list[str] = ["account"],
         repository: type[AccountRepository] = AccountRepository,
     ) -> None:
         """Constructor for HTTP API route.
 
-        :param name: The name of the route
-        :param tags: List of tags associated with the route
         :param repository: The repository that may be used to query
             information.
         """
         super().__init__(
-            name=name,
-            tags=tags,
             repository=repository,
         )
 
@@ -57,9 +52,9 @@ class AccountRoute(BaseRoute):
 
         :param request: The data send throught the request.
         """
-        raise HTTPException(
+        raise SanicException(
+            message="I can't do anything. I'm a teapot.",
             status_code=418,
-            detail="I can't do anything. I'm a teapot.",
         )
 
     async def get(self) -> list[ListAccountSchema]:
@@ -76,13 +71,16 @@ class AccountRoute(BaseRoute):
         """
         return await super().get_by_id(identifier)
 
-    async def put(self, request: UpdateAccountSchema, identifier: str) -> None:
+    @validate(json=UpdateAccountSchema)
+    async def put(
+        self,
+        request: Request,
+        body: UpdateAccountSchema,
+        identifier: str,
+    ) -> None:
         """Async method that update data for this API.
 
         :param request: The data send throught the request.
         :param identifier: The unique identifier used in the query.
         """
-        return await super().put(request, identifier)
-
-
-route = AccountRoute()
+        return await super().put(body, identifier)

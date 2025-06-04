@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module that represents the Account Model."""
+
 import enum
 
 from sqlalchemy import Column, Enum, String

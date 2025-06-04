@@ -49,8 +49,7 @@ class DungeonHistoryRepository(BaseRepository):
         :param player_id: Player id to be used in the filter.
         """
         statement = select(self.model).where(
-            self.model.player_id == player_id
-            and self.deleted_at == None,  # type: ignore # noqa
+            self.model.player_id == player_id and self.deleted_at == None,  # type: ignore # noqa
         )
 
         with self.session() as session:
@@ -63,8 +62,7 @@ class DungeonHistoryRepository(BaseRepository):
         :param dungeon_id: Dungeon id to be used in the filter.
         """
         statement = select(self.model).where(
-            self.model.dungeon_id == dungeon_id
-            and self.deleted_at == None,  # type: ignore # noqa
+            self.model.dungeon_id == dungeon_id and self.deleted_at == None,  # type: ignore # noqa
         )
 
         with self.session() as session:

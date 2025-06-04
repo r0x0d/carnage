@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module to hold all global pre-defined variables."""
+
 import os
 
 CARNAGE_ENVIRONMENT: str | None = os.getenv(

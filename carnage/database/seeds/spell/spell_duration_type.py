@@ -58,9 +58,7 @@ class SpellDurationTypeSeed(BaseSeed):
 
     def __init__(
         self,
-        repository: type[
-            SpellDurationTypeRepository
-        ] = SpellDurationTypeRepository,
+        repository: type[SpellDurationTypeRepository] = SpellDurationTypeRepository,
     ) -> None:
         """Default class constructor.
 

@@ -93,7 +93,7 @@ class GitlabAuthenticationRoute(BaseAuthentication):
         userinfo = httpx.get(
             url="https://gitlab.com/api/v4/user",
             headers={
-                "Authorization": f'Bearer {token["access_token"]}',
+                "Authorization": f"Bearer {token['access_token']}",
             },
         ).json()
 
@@ -105,9 +105,7 @@ class GitlabAuthenticationRoute(BaseAuthentication):
             if userinfo.get("public_email")
             else userinfo.get("email"),
             "email_verified": True,  # TODO(r0x0d): Check later if gitlab returns this information # noqa
-            "nonce": "".join(
-                random.choice(string.ascii_letters) for _ in range(10)
-            ),
+            "nonce": "".join(random.choice(string.ascii_letters) for _ in range(10)),
             "name": userinfo.get("name"),
             "preferred_username": userinfo.get("username"),
             "profile": userinfo.get("web_url"),

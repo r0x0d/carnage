@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module that handles the generation of new dungeons."""
+
 import logging
 from functools import lru_cache
 from random import choice, randint

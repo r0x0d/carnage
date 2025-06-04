@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module to handle the authentication process, as well, generating tokens."""
+
 from datetime import datetime, timedelta
 from typing import Any
 

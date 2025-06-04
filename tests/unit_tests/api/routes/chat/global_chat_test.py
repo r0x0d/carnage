@@ -12,11 +12,14 @@ def test_websocket(database_session_mock, application_instance, get_fake_jwt):
     # Random fernet key generated for testing purposes.
     output = AccountModelOutput("_UCCQZGUSHZMa5P5bmdYgo7T-k1p25o5Ejl_qMu1ONg=")
     client = TestClient(application_instance)
-    with mock.patch.object(
-        global_chat.route.account_repository,
-        "select_by_id",
-        lambda identifier: [output],
-    ), mock.patch.object(global_chat.route, "repository"):
+    with (
+        mock.patch.object(
+            global_chat.route.account_repository,
+            "select_by_id",
+            lambda identifier: [output],
+        ),
+        mock.patch.object(global_chat.route, "repository"),
+    ):
         with client.websocket_connect(
             f"/api/v1/chat/global/9a22bdfa-6adb-11ed?token={get_fake_jwt}",
         ) as websocket:

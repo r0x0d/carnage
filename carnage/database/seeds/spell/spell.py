@@ -62,9 +62,7 @@ class SpellSeed(BaseSeed):
     def seed(self) -> None:
         """Method to seed data into the database."""
         spell_school = self.spell_school_repository.select_first()
-        spell_duration_type = (
-            self.spell_duration_type_repository.select_first()
-        )
+        spell_duration_type = self.spell_duration_type_repository.select_first()
         spell_range_type = self.spell_range_type_repository.select_first()
 
         for item in self.data:

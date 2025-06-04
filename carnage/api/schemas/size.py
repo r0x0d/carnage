@@ -21,24 +21,22 @@
 # SOFTWARE.
 """Module to represent an Size schema."""
 
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from pydantic import BaseModel
+from carnage.api.schemas.base import BaseListingModel
 
-from carnage.database.models.size import SizeModel
+
+class _BaseSizeSchema(BaseModel):
+    name: str
+    description: str
 
 
-class ListSizeSchema(
-    sqlalchemy_to_pydantic(SizeModel),  # type: ignore
-):
+class ListSizeSchema(_BaseSizeSchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
 
-class UpdateSizeSchema(
-    sqlalchemy_to_pydantic(SizeModel, config=None),  # type: ignore
-):
+class UpdateSizeSchema(_BaseSizeSchema):
     """Class that represents an update of elements."""
 
 
-class CreateSizeSchema(
-    sqlalchemy_to_pydantic(SizeModel, config=None),  # type: ignore
-):
+class CreateSizeSchema(_BaseSizeSchema):
     """Class that represents an creation of elements."""

@@ -46,17 +46,21 @@ async def test_gitlab_login(application_instance):
 
 @pytest.mark.anyio()
 async def test_gitlab_auth(application_instance):
-    with mock.patch.object(
-        authentication.gitlab.route.oauth.gitlab,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"access_token": "test"}),
-    ), mock.patch.object(
-        authentication.gitlab.route.account_repository,
-        "select_by_username",
-    ), mock.patch.object(
-        authentication.gitlab.httpx,
-        "get",
-        return_value=HTTPXResponseMock(),
+    with (
+        mock.patch.object(
+            authentication.gitlab.route.oauth.gitlab,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"access_token": "test"}),
+        ),
+        mock.patch.object(
+            authentication.gitlab.route.account_repository,
+            "select_by_username",
+        ),
+        mock.patch.object(
+            authentication.gitlab.httpx,
+            "get",
+            return_value=HTTPXResponseMock(),
+        ),
     ):
         async with AsyncClient(
             app=application_instance,
@@ -69,22 +73,27 @@ async def test_gitlab_auth(application_instance):
 
 @pytest.mark.anyio()
 async def test_gitlab_auth_no_user_found(application_instance):
-    with mock.patch.object(
-        authentication.gitlab.route.oauth.gitlab,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"access_token": "test"}),
-    ), mock.patch.object(
-        authentication.gitlab.route.account_repository,
-        "select_by_username",
-        lambda username: False,
-    ), mock.patch.object(
-        authentication.gitlab.route.account_repository,
-        "insert",
-        lambda data: None,
-    ), mock.patch.object(
-        authentication.gitlab.httpx,
-        "get",
-        return_value=HTTPXResponseMock(),
+    with (
+        mock.patch.object(
+            authentication.gitlab.route.oauth.gitlab,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"access_token": "test"}),
+        ),
+        mock.patch.object(
+            authentication.gitlab.route.account_repository,
+            "select_by_username",
+            lambda username: False,
+        ),
+        mock.patch.object(
+            authentication.gitlab.route.account_repository,
+            "insert",
+            lambda data: None,
+        ),
+        mock.patch.object(
+            authentication.gitlab.httpx,
+            "get",
+            return_value=HTTPXResponseMock(),
+        ),
     ):
         async with AsyncClient(
             app=application_instance,

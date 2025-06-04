@@ -48,9 +48,7 @@ class ItemMagicalTypeSeed(BaseSeed):
 
     def __init__(
         self,
-        repository: type[
-            ItemMagicalTypeRepository
-        ] = ItemMagicalTypeRepository,
+        repository: type[ItemMagicalTypeRepository] = ItemMagicalTypeRepository,
     ) -> None:
         """Default class constructor.
 

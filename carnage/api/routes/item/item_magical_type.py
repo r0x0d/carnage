@@ -41,9 +41,7 @@ class ItemMagicalTypeRoute(BaseRoute):
         self,
         name: str = "item_magical_type",
         tags: list[str] = ["item", "item-magical-type"],
-        repository: type[
-            ItemMagicalTypeRepository
-        ] = ItemMagicalTypeRepository,
+        repository: type[ItemMagicalTypeRepository] = ItemMagicalTypeRepository,
     ) -> None:
         """Constructor for HTTP API route.
 

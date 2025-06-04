@@ -67,9 +67,7 @@ class DungeonDifficultySeed(BaseSeed):
 
     def __init__(
         self,
-        repository: type[
-            DungeonDifficultyRepository
-        ] = DungeonDifficultyRepository,
+        repository: type[DungeonDifficultyRepository] = DungeonDifficultyRepository,
     ) -> None:
         """Default class constructor.
 

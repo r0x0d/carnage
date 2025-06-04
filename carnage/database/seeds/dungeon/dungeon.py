@@ -59,10 +59,8 @@ class DungeonSeed(BaseSeed):
     def seed(self) -> None:
         """Method to seed data into the database."""
         for item in self.data:
-            dungeon_difficulty = (
-                self.dungeon_difficulty_repository.select_by_level(
-                    level=item["_dungeon_difficulty"],
-                )
+            dungeon_difficulty = self.dungeon_difficulty_repository.select_by_level(
+                level=item["_dungeon_difficulty"],
             )
             dungeon_schema = (
                 self.dungeon_schema_repository.select_by_dungeon_difficulty(

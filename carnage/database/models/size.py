@@ -32,3 +32,4 @@ class SizeModel(BaseModel):
     __tablename__ = "sizes"
 
     name = Column(String(100))
+    description = Column(String())

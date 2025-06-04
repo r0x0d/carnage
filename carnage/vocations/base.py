@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Modules that maps a base vocation."""
+
 from functools import cached_property
 from random import SystemRandom
 
@@ -52,9 +53,7 @@ class BaseVocation:
         """
         if self.current_hitpoints > 0:
             resulting_damage = self.current_hitpoints - damage
-            self.current_hitpoints = (
-                resulting_damage if resulting_damage > 0 else 0
-            )
+            self.current_hitpoints = resulting_damage if resulting_damage > 0 else 0
         else:
             self.current_hitpoints = 0
 
@@ -87,10 +86,7 @@ class BaseVocation:
         """
         damage = damage_type * (
             self.prefered_magical_attack_attribute
-            * (
-                self.vocation.base_magical_damage
-                * self.vocation.base_magical_damage
-            )
+            * (self.vocation.base_magical_damage * self.vocation.base_magical_damage)
             / (self.vocation.base_magical_damage + player_magical_defense)
         )
 

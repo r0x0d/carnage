@@ -20,25 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module to represent an Account schema."""
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
 
-from carnage.database.models.account import AccountModel
+from pydantic import BaseModel
+
+from carnage.api.schemas.base import BaseListingModel
 
 
-class ListAccountSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        AccountModel,
-        exclude=("password", "secret_key"),
-    ),
-):
+class _BaseAccountSchema(BaseModel):
+    username: str
+    nickname: str
+
+
+class ListAccountSchema(_BaseAccountSchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
+    provider: str
 
-class UpdateAccountSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        AccountModel,
-        config=None,
-        exclude=("provider", "secret_key"),
-    ),
-):
+
+class UpdateAccountSchema(_BaseAccountSchema):
     """Class that represents an update of elements."""

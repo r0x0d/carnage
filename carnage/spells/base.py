@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module that represents the base of a spell."""
+
 from random import SystemRandom
 
 from carnage.database.models.spell import SpellModel
@@ -58,9 +59,7 @@ class BaseSpell:
         :param player_defense: The amount of defense the target has.
         """
         damage = damage_type * (
-            attribute_modifier
-            * self.spell.base_damage
-            / ((100 + player_defense) / 100)
+            attribute_modifier * self.spell.base_damage / ((100 + player_defense) / 100)
         )
 
         return int(damage)

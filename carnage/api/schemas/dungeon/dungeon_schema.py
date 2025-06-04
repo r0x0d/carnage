@@ -21,42 +21,26 @@
 # SOFTWARE.
 """Module to represent an Dungeon Schema schema."""
 
-from pydantic import Field
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from carnage.api.schemas.base import BaseListingModel
+from carnage.api.schemas.dungeon.dungeon_difficulty import _BaseDungeonDifficultySchema
+from carnage.database.models.base import BaseModel
 
-from carnage.database.models.dungeon import DungeonSchemaModel
+
+class _BaseDungeonSchemaSchema(BaseModel):
+    name: str
+    description: str
+    schema: str
+    version: str
+    dungeon_difficulty_id: str
 
 
-class ListDungeonSchemaSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        DungeonSchemaModel,
-        exclude=("schema",),
-    ),
-):
+class ListDungeonSchemaSchema(_BaseDungeonDifficultySchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
-    dungeon_schema: str = Field(alias="schema")
 
-
-class UpdateDungeonSchemaSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        DungeonSchemaModel,
-        config=None,
-        exclude=("schema",),
-    ),
-):
+class UpdateDungeonSchemaSchema(_BaseDungeonSchemaSchema):
     """Class that represents an update of elements."""
 
-    dungeon_schema: str = Field(alias="schema")
 
-
-class CreateDungeonSchemaSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        DungeonSchemaModel,
-        config=None,
-        exclude=("schema",),
-    ),
-):
+class CreateDungeonSchemaSchema(_BaseDungeonSchemaSchema):
     """Class that represents an creation of elements."""
-
-    dungeon_schema: str = Field(alias="schema")

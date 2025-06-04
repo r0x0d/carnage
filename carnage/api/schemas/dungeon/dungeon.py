@@ -21,24 +21,24 @@
 # SOFTWARE.
 """Module to represent an Dungeon schema."""
 
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from pydantic import BaseModel
+from carnage.api.schemas.base import BaseListingModel
 
-from carnage.database.models.dungeon import DungeonModel
+
+class _BaseDungeonSchema(BaseModel):
+    name: str
+    description: str
+    plot: dict
+    dungeon_schema_id: str
 
 
-class ListDungeonSchema(
-    sqlalchemy_to_pydantic(DungeonModel),  # type: ignore
-):
+class ListDungeonSchema(_BaseDungeonSchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
 
-class UpdateDungeonSchema(
-    sqlalchemy_to_pydantic(DungeonModel, config=None),  # type: ignore
-):
+class UpdateDungeonSchema(_BaseDungeonSchema):
     """Class that represents an update of elements."""
 
 
-class CreateDungeonSchema(
-    sqlalchemy_to_pydantic(DungeonModel, config=None),  # type: ignore
-):
+class CreateDungeonSchema(_BaseDungeonSchema):
     """Class that represents an creation of elements."""

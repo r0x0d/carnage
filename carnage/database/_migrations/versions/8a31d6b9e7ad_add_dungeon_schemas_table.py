@@ -26,6 +26,7 @@ Revises: 105b44e2cd80
 Create Date: 2022-10-28 21:13:43.104909
 
 """
+
 from datetime import datetime
 
 import sqlalchemy as sa

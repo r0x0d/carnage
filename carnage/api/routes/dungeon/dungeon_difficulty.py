@@ -41,9 +41,7 @@ class DungeonDifficultyRoute(BaseRoute):
         self,
         name: str = "dungeon_difficulty",
         tags: list[str] = ["dungeon", "dungeon-difficulty"],
-        repository: type[
-            DungeonDifficultyRepository
-        ] = DungeonDifficultyRepository,
+        repository: type[DungeonDifficultyRepository] = DungeonDifficultyRepository,
     ) -> None:
         """Constructor for HTTP API route.
 

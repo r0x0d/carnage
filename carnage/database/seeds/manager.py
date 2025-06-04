@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module that manages all the seeds in the project."""
+
 import logging
 
 from carnage.database.seeds.account import AccountSeed

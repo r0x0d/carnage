@@ -49,8 +49,7 @@ class VocationSpellRepository(BaseRepository):
         :param spell_id: Spell id to be used in the filter.
         """
         statement = select(self.model).where(
-            self.model.spell_id == spell_id
-            and self.deleted_at == None,  # type: ignore # noqa
+            self.model.spell_id == spell_id and self.deleted_at == None,  # type: ignore # noqa
         )
 
         with self.session() as session:

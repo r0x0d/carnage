@@ -21,24 +21,24 @@
 # SOFTWARE.
 """Module to represent an Difficulty schema."""
 
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from pydantic import BaseModel
+from carnage.api.schemas.base import BaseListingModel
 
-from carnage.database.models.difficulty import DifficultyModel
+
+class _BaseDifficultySchema(BaseModel):
+    """Base class for Difficulty schemas."""
+
+    name: str
+    description: str
 
 
-class ListDifficultySchema(
-    sqlalchemy_to_pydantic(DifficultyModel),  # type: ignore
-):
+class ListDifficultySchema(_BaseDifficultySchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
 
-class UpdateDifficultySchema(
-    sqlalchemy_to_pydantic(DifficultyModel, config=None),  # type: ignore
-):
+class UpdateDifficultySchema(_BaseDifficultySchema):
     """Class that represents an update of elements."""
 
 
-class CreateDifficultySchema(
-    sqlalchemy_to_pydantic(DifficultyModel, config=None),  # type: ignore
-):
+class CreateDifficultySchema(_BaseDifficultySchema):
     """Class that represents an creation of elements."""

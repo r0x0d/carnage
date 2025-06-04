@@ -21,30 +21,26 @@
 # SOFTWARE.
 """Module to represent an Condition schema."""
 
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from pydantic import BaseModel
 
-from carnage.database.models.condition import ConditionModel
+from carnage.api.schemas.base import BaseListingModel
 
 
-class ListConditionSchema(
-    sqlalchemy_to_pydantic(ConditionModel),  # type: ignore
-):
+class _BaseConditionSchema(BaseModel):
+    """Base class for Condition schemas."""
+
+    name: str
+    description: str
+    is_permanent: bool
+
+
+class ListConditionSchema(_BaseConditionSchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
 
-class UpdateConditionSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        ConditionModel,
-        config=None,
-    ),
-):
+class UpdateConditionSchema(_BaseConditionSchema):
     """Class that represents an update of elements."""
 
 
-class CreateConditionSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        ConditionModel,
-        config=None,
-    ),
-):
+class CreateConditionSchema(_BaseConditionSchema):
     """Class that represents an creation of elements."""

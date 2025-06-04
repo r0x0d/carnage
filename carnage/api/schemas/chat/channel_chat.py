@@ -21,30 +21,22 @@
 # SOFTWARE.
 """Module to represent an Channel Chat schema."""
 
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from pydantic import BaseModel
+from carnage.api.schemas.base import BaseListingModel
 
-from carnage.database.models.chat import ChannelChatModel
+
+class _BaseChannelChatSchema(BaseModel):
+    name: str
+    description: str
 
 
-class ListChannelChatSchema(
-    sqlalchemy_to_pydantic(ChannelChatModel),  # type: ignore
-):
+class ListChannelChatSchema(_BaseChannelChatSchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
 
-class UpdateChannelChatSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        ChannelChatModel,
-        config=None,
-    ),
-):
+class UpdateChannelChatSchema(_BaseChannelChatSchema):
     """Class that represents an update of elements."""
 
 
-class CreateChannelChatSchema(
-    sqlalchemy_to_pydantic(  # type: ignore
-        ChannelChatModel,
-        config=None,
-    ),
-):
+class CreateChannelChatSchema(_BaseChannelChatSchema):
     """Class that represents an creation of elements."""

@@ -21,24 +21,28 @@
 # SOFTWARE.
 """Module to represent an Player schema."""
 
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from pydantic import BaseModel
 
-from carnage.database.models.player import PlayerModel
+from carnage.api.schemas.base import BaseListingModel
 
 
-class ListPlayerSchema(
-    sqlalchemy_to_pydantic(PlayerModel),  # type: ignore
-):
+class _BasePlayerSchema(BaseModel):
+    name: str
+    description: str
+    is_alive: bool
+
+
+class ListPlayerSchema(_BasePlayerSchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
+    vocation_id: str
 
-class UpdatePlayerSchema(
-    sqlalchemy_to_pydantic(PlayerModel, config=None),  # type: ignore
-):
+
+class UpdatePlayerSchema(_BasePlayerSchema):
     """Class that represents an update of elements."""
 
 
-class CreatePlayerSchema(
-    sqlalchemy_to_pydantic(PlayerModel, config=None),  # type: ignore
-):
+class CreatePlayerSchema(_BasePlayerSchema):
     """Class that represents an creation of elements."""
+
+    vocation_id: str

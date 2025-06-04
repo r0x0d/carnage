@@ -80,8 +80,7 @@ class BaseRepository:
         :param identifier: The unique identifier to query in the database.
         """
         statement = select(self.model).where(
-            self.model.id == identifier
-            and self.model.deleted_at == None,  # noqa
+            self.model.id == identifier and self.model.deleted_at == None,  # noqa
         )
         with self.session() as session:
             return session.execute(statement=statement).first()

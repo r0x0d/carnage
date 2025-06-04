@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module that represents the Account repository."""
+
 from functools import lru_cache
 
 from sqlalchemy import select
@@ -48,8 +49,7 @@ class AccountRepository(BaseRepository):
         :param username: Username to be used in the filter.
         """
         statement = select(self.model).where(
-            self.model.username == username
-            and self.deleted_at == None,  # type: ignore # noqa
+            self.model.username == username and self.deleted_at == None,  # type: ignore # noqa
         )
 
         with self.session() as session:
@@ -62,8 +62,7 @@ class AccountRepository(BaseRepository):
         :param nickanem: Nickname to be used in the filter.
         """
         statement = select(self.model).where(
-            self.model.nickname == nickname
-            and self.deleted_at == None,  # type: ignore # noqa
+            self.model.nickname == nickname and self.deleted_at == None,  # type: ignore # noqa
         )
 
         with self.session() as session:

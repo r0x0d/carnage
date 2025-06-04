@@ -175,10 +175,8 @@ class DungeonSchemaSeed(BaseSeed):
     def seed(self) -> None:
         """Method to seed data into the database."""
         for item in self.data:
-            dungeon_difficulty = (
-                self.dungeon_difficulty_repository.select_by_level(
-                    level=item.get("_dungeon_difficulty", "Easy"),
-                )
+            dungeon_difficulty = self.dungeon_difficulty_repository.select_by_level(
+                level=item.get("_dungeon_difficulty", "Easy"),
             )
             # Remove the searchable key
             item.pop("_dungeon_difficulty")

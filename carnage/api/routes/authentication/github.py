@@ -108,9 +108,7 @@ class GithubAuthenticationRoute(BaseAuthentication):
             "sub": str(userinfo.get("id")),
             "email": userinfo.get("email"),
             "email_verified": email_verified,
-            "nonce": "".join(
-                random.choice(string.ascii_letters) for _ in range(10)
-            ),
+            "nonce": "".join(random.choice(string.ascii_letters) for _ in range(10)),
             "name": userinfo.get("name"),
             "preferred_username": userinfo.get("login"),
             "profile": userinfo.get("html_url"),

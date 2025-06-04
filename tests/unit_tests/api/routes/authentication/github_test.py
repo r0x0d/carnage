@@ -75,17 +75,21 @@ async def test_github_login(application_instance):
 
 @pytest.mark.anyio()
 async def test_github_auth(application_instance):
-    with mock.patch.object(
-        authentication.github.route.oauth.github,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"access_token": "test"}),
-    ), mock.patch.object(
-        authentication.github.route.account_repository,
-        "select_by_username",
-    ), mock.patch.object(
-        authentication.github.httpx,
-        "get",
-        return_value=HTTPXResponseMock(),
+    with (
+        mock.patch.object(
+            authentication.github.route.oauth.github,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"access_token": "test"}),
+        ),
+        mock.patch.object(
+            authentication.github.route.account_repository,
+            "select_by_username",
+        ),
+        mock.patch.object(
+            authentication.github.httpx,
+            "get",
+            return_value=HTTPXResponseMock(),
+        ),
     ):
         async with AsyncClient(
             app=application_instance,
@@ -98,22 +102,27 @@ async def test_github_auth(application_instance):
 
 @pytest.mark.anyio()
 async def test_github_auth_no_user_found(application_instance):
-    with mock.patch.object(
-        authentication.github.route.oauth.github,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"access_token": "test"}),
-    ), mock.patch.object(
-        authentication.github.route.account_repository,
-        "select_by_username",
-        lambda username: False,
-    ), mock.patch.object(
-        authentication.github.route.account_repository,
-        "insert",
-        lambda data: None,
-    ), mock.patch.object(
-        authentication.github.httpx,
-        "get",
-        return_value=HTTPXResponseMock(),
+    with (
+        mock.patch.object(
+            authentication.github.route.oauth.github,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"access_token": "test"}),
+        ),
+        mock.patch.object(
+            authentication.github.route.account_repository,
+            "select_by_username",
+            lambda username: False,
+        ),
+        mock.patch.object(
+            authentication.github.route.account_repository,
+            "insert",
+            lambda data: None,
+        ),
+        mock.patch.object(
+            authentication.github.httpx,
+            "get",
+            return_value=HTTPXResponseMock(),
+        ),
     ):
         async with AsyncClient(
             app=application_instance,
@@ -126,17 +135,21 @@ async def test_github_auth_no_user_found(application_instance):
 
 @pytest.mark.anyio()
 async def test_github_auth_no_primary_email(application_instance):
-    with mock.patch.object(
-        authentication.github.route.oauth.github,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"access_token": "test"}),
-    ), mock.patch.object(
-        authentication.github.route.account_repository,
-        "select_by_username",
-    ), mock.patch.object(
-        authentication.github.httpx,
-        "get",
-        return_value=HTTPXMultipleResponseMock(),
+    with (
+        mock.patch.object(
+            authentication.github.route.oauth.github,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"access_token": "test"}),
+        ),
+        mock.patch.object(
+            authentication.github.route.account_repository,
+            "select_by_username",
+        ),
+        mock.patch.object(
+            authentication.github.httpx,
+            "get",
+            return_value=HTTPXMultipleResponseMock(),
+        ),
     ):
         async with AsyncClient(
             app=application_instance,
@@ -149,17 +162,21 @@ async def test_github_auth_no_primary_email(application_instance):
 
 @pytest.mark.anyio()
 async def test_github_auth_no_primary_email_at_all(application_instance):
-    with mock.patch.object(
-        authentication.github.route.oauth.github,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"access_token": "test"}),
-    ), mock.patch.object(
-        authentication.github.route.account_repository,
-        "select_by_username",
-    ), mock.patch.object(
-        authentication.github.httpx,
-        "get",
-        return_value=HTTPXMultipleResponseMock(email="", is_primary=False),
+    with (
+        mock.patch.object(
+            authentication.github.route.oauth.github,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"access_token": "test"}),
+        ),
+        mock.patch.object(
+            authentication.github.route.account_repository,
+            "select_by_username",
+        ),
+        mock.patch.object(
+            authentication.github.httpx,
+            "get",
+            return_value=HTTPXMultipleResponseMock(email="", is_primary=False),
+        ),
     ):
         async with AsyncClient(
             app=application_instance,

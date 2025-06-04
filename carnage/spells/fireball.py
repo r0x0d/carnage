@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """Module that represents a Fireball spell."""
+
 from carnage.database.models.spell.spell import SpellModel
 from carnage.spells.base import BaseSpell
 

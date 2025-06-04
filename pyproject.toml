@@ -15,10 +15,10 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 dependencies = [
+    "sanic[ext]==25.3.0",
     "alembic==1.16.1",
     "authlib==1.6.0",
     "cryptography==44.0.1",
-    "itsdangerous==2.2.0",
     "psycopg-binary==3.2.9",
     "pydantic[email]==2.11.5",
     "sqlalchemy==2.0.41",
@@ -36,7 +36,6 @@ dev = [
     "covdefaults==2.3.0",
     "pytest==8.4.0",
     "pytest-cov==6.1.1",
-    "pytest-env==1.1.5",
     "pytest-xdist[psutil]==3.7.0",
     "tox==4.26.0",
 ]

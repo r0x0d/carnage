@@ -41,9 +41,7 @@ class SpellDurationTypeRoute(BaseRoute):
         self,
         name: str = "spell_duration_type",
         tags: list[str] = ["spell", "spell-duration-type"],
-        repository: type[
-            SpellDurationTypeRepository
-        ] = SpellDurationTypeRepository,
+        repository: type[SpellDurationTypeRepository] = SpellDurationTypeRepository,
     ) -> None:
         """Constructor for HTTP API route.
 

@@ -35,9 +35,6 @@ class PlayerModel(BaseModel):
     name = Column(String(100))
     description = Column(String())
     is_alive = Column(Boolean())
+
     # ForeignKeys
-    dungeon_id = Column(
-        UUID(as_uuid=True),
-        ForeignKey("dungeons.id"),
-    )
     vocation_id = Column(UUID(as_uuid=True), ForeignKey("vocations.id"))

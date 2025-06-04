@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2022, Rodolfo Olivieri
+# Copyright (c) 2025, Rodolfo Olivieri
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,30 +19,13 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""Module to represent an Aligment schema."""
+"""Module that represents the Base Model."""
 
 from pydantic import BaseModel
 
-from carnage.api.schemas.base import BaseListingModel
 
-
-class _BaseAligmentSchema(BaseModel):
-    """Base class for Aligment schemas."""
-
-    name: str
-
-
-class ListAligmentSchema(_BaseAligmentSchema, BaseListingModel):
-    """Class that represents a listing of elements."""
-
-
-class UpdateAligmentSchema(_BaseAligmentSchema):
-    """Class that represents an update of elements."""
-
-    name: str
-
-
-class CreateAligmentSchema(_BaseAligmentSchema):
-    """Class that represents an creation of elements."""
-
-    name: str
+class BaseListingModel(BaseModel):
+    id: str
+    created_at: str
+    updated_at: str
+    deleted_at: str

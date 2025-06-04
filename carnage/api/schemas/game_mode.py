@@ -21,24 +21,24 @@
 # SOFTWARE.
 """Module to represent an Game Mode schema."""
 
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
+from pydantic import BaseModel
+from carnage.api.schemas.base import BaseListingModel
 
-from carnage.database.models.game_mode import GameModeModel
+
+class _BaseGameModeSchema(BaseModel):
+    """Base class for Game Mode schemas."""
+
+    name: str
+    description: str | None = None
 
 
-class ListGameModeSchema(
-    sqlalchemy_to_pydantic(GameModeModel),  # type: ignore
-):
+class ListGameModeSchema(_BaseGameModeSchema, BaseListingModel):
     """Class that represents a listing of elements."""
 
 
-class UpdateGameModeSchema(
-    sqlalchemy_to_pydantic(GameModeModel, config=None),  # type: ignore
-):
+class UpdateGameModeSchema(_BaseGameModeSchema):
     """Class that represents an update of elements."""
 
 
-class CreateGameModeSchema(
-    sqlalchemy_to_pydantic(GameModeModel, config=None),  # type: ignore
-):
+class CreateGameModeSchema(_BaseGameModeSchema):
     """Class that represents an creation of elements."""

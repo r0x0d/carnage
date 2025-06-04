@@ -26,13 +26,16 @@ async def test_google_login(application_instance):
 
 @pytest.mark.anyio()
 async def test_google_auth(application_instance):
-    with mock.patch.object(
-        authentication.google.route.oauth.google,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"userinfo": {"email": "test"}}),
-    ), mock.patch.object(
-        authentication.google.route.account_repository,
-        "select_by_username",
+    with (
+        mock.patch.object(
+            authentication.google.route.oauth.google,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"userinfo": {"email": "test"}}),
+        ),
+        mock.patch.object(
+            authentication.google.route.account_repository,
+            "select_by_username",
+        ),
     ):
         async with AsyncClient(
             app=application_instance,
@@ -45,18 +48,22 @@ async def test_google_auth(application_instance):
 
 @pytest.mark.anyio()
 async def test_google_auth_no_user_found(application_instance):
-    with mock.patch.object(
-        authentication.google.route.oauth.google,
-        "authorize_access_token",
-        mock.AsyncMock(return_value={"userinfo": {"email": "test"}}),
-    ), mock.patch.object(
-        authentication.google.route.account_repository,
-        "select_by_username",
-        lambda username: False,
-    ), mock.patch.object(
-        authentication.google.route.account_repository,
-        "insert",
-        lambda data: None,
+    with (
+        mock.patch.object(
+            authentication.google.route.oauth.google,
+            "authorize_access_token",
+            mock.AsyncMock(return_value={"userinfo": {"email": "test"}}),
+        ),
+        mock.patch.object(
+            authentication.google.route.account_repository,
+            "select_by_username",
+            lambda username: False,
+        ),
+        mock.patch.object(
+            authentication.google.route.account_repository,
+            "insert",
+            lambda data: None,
+        ),
     ):
         async with AsyncClient(
             app=application_instance,
