@@ -22,7 +22,7 @@ jobs:
         platform:
           - { name: Linux, distro: ubuntu-latest, pip_cache_path: ~/.cache/pip }
         python:
-          - { version: "3.11", tox: py311 }
+          - { version: "3.13", tox: py313 }
 
     runs-on: ${{ matrix.platform.distro }}
 
