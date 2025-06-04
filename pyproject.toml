@@ -40,7 +40,7 @@ dev = [
     "pytest-xdist[psutil]==3.7.0",
     "tox==4.12.1",
 ]
-docs = ["sphinx==7.2.6", "sphinx-rtd-theme==3.0.2"]
+docs = ["sphinx==8.2.3", "sphinx-rtd-theme==3.0.2"]
 
 [project.scripts]
 carnage = "carnage.__main__:main"
