@@ -20,7 +20,7 @@ dependencies = [
     "cryptography==45.0.3",
     "itsdangerous==2.2.0",
     "psycopg-binary==3.2.9",
-    "pydantic[email]==2.11.5",
+    "pydantic[email]==2.11.7",
     "sqlalchemy==2.0.41",
     "uvicorn[standard]==0.34.3",
     "rich==14.0.0",
