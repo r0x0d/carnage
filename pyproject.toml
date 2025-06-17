@@ -38,7 +38,7 @@ dev = [
     "pytest-cov==6.1.1",
     "pytest-env==1.1.5",
     "pytest-xdist[psutil]==3.7.0",
-    "tox==4.26.0",
+    "tox==4.27.0",
 ]
 docs = ["sphinx==8.2.3", "sphinx-rtd-theme==3.0.2"]
 
