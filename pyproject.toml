@@ -17,7 +17,7 @@ classifiers = [
 dependencies = [
     "alembic==1.16.1",
     "authlib==1.6.0",
-    "cryptography==45.0.3",
+    "cryptography==45.0.5",
     "itsdangerous==2.2.0",
     "psycopg-binary==3.2.9",
     "pydantic[email]==2.11.5",
